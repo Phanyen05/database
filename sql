@@ -447,3 +447,45 @@ insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantit
 ("Hoa Dao Hotel","88 Thinh Ward - Comercial Area, Hòa Bình, Việt Nam ","11","Room Service","70");
 insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
 ("HANZ Regal Hotel Hanoi","72, Ninh Hai 430000, Việt Nam","10","Nature and Types of Services","40");
+
+a. SELECT * FROM bookingg.extra_payment
+where LOCATION LIKE '%Ninh%';
+b.SELECT * FROM bookingg.hotel 
+where LOCATION LIKE '%Phu Quoc%'
+ORDER BY rating DESC;
+c. SELECT customer_acc.DisplayName,email,CheckInDate,CheckOutDate
+FROM customer_acc
+INNER JOIN booking on Customer_acc.DisplayName = Booking.DisplayName
+order by DisplayName asc;
+d. select * FROM bookingg.hotel 
+where LOCATION LIKE '%ha%';
+SELECT HotelName, No_empty_Room 
+FROM hotel
+GROUP BY No_empty_Room
+HAVING  No_empty_Room >20
+ORDER BY No_empty_Room DESC;
+e. CREATE VIEW service_hotel as
+SELECT ServiceName, price
+FROM services
+where Price <100
+f.  update CUSTOMER
+set DOB ="2001-03-04"
+WHERE DOB ="1987-07-28";
+commit;
+g. select DisplayName from booking
+where CheckInDate between "2021-6-08"
+and "2021-06-14";
+h. SELECT WORK, COUNT(WORK) AS "NUMBER"
+from purpose
+GROUP BY WORK;
+i.SELECT NAME, GENDER, COUNT(3)
+FROM CUSTOMER
+WHERE NAME="Casey Thomass"
+GROUP BY GENDER
+HAVING GENDER="FEMALE";
+j. UPDATE area 
+SET 
+    Description = 'Tuyênn Quang'
+WHERE
+   BookingID =113;
+
