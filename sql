@@ -1,6 +1,6 @@
 create database bookingg;
 use bookingg;
-
+drop database bookingg;
 CREATE TABLE CUSTOMER1(
 		ID numeric,
 		NAME varchar(500),
@@ -72,20 +72,6 @@ CREATE TABLE HOTEL (
     Foreign Key (DisplayName) references CUSTOMER_ACC (DisplayName),
 	Foreign Key (PlaceID) references AREA (PlaceID)
 );
-CREATE TABLE HOTEL1(
-	HotelName varchar (200),
-	location varchar(500), 
-    No_empty_Room numeric,
-    Convenience varchar (500),
-    Rating varchar (30),
-	PlaceID numeric,
-	BookingID numeric,
-	DisplayName varchar(500),
-    Primary Key (HotelName, Location),
-	Foreign Key (BookingID) references BOOKING (BookingID),
-    Foreign Key (DisplayName) references CUSTOMER_ACC (DisplayName),
-	Foreign Key (PlaceID) references AREA (PlaceID)
-);
 
 CREATE TABLE ROOM (
 	HotelName varchar (200),
@@ -98,17 +84,7 @@ CREATE TABLE ROOM (
 	Foreign Key (HotelName, Location) references HOTEL(HotelName, Location)
 );
   
-  CREATE TABLE ROOM1(
-	HotelName varchar (200),
-	location varchar(500), 
-    RoomNumber varchar (50),
-    NoAdult int,
-    NoChhildren int,
-    Price float,
-    Primary Key (HotelName, Location, RoomNumber),
-	Foreign Key (HotelName, Location) references HOTEL(HotelName, Location)
-);
-  
+ 
 
 CREATE TABLE SERVICES (
 	ServiceName varchar (50),
@@ -116,9 +92,6 @@ CREATE TABLE SERVICES (
     Decription varchar(500),
     Primary Key (ServiceName)
    );
-   
-   
-
 
 CREATE TABLE EXTRA_PAYMENT (
 	HotelName varchar (200),
@@ -137,24 +110,24 @@ INSERT INTO CUSTOMER1 (ID, NAME, DOB, GENDER, NATIONALITY, ADDRESS) values
 (4,"Rebecca Parker","1977-07-28,","","UK","195Street Family"),
 (5,"Laura Murray","1957-07-28,","MALE","UK","4319 E Cricket KNL"),
 (6,"Linda Hines","1967-07-28,","FEMALE","UK"," 47408Bloomington "),
- (7,"Jasmine Fletcher","1957-07-28,","","UK","46 Church Lane LondonN45 9Z"),
- (8,"Dylan Rangel","1937-07-28,","MALE","UK","9001 New StreetLondon"),
- (9,"William Velez","1967-09-18,","MALE","UK","800 Kings RoadLondon"),
- (10,"Steven Murphy","1987-07-9,","MALE","UK",""),
- (11,"Michael Moore","1987-07-28,","FEMALE","UK","(901) 324-31273448 Ile De France St #242Fort Wainwright, Alaska(AK), 99703"),
- (12,"Priscilla Collins PhD","1987-07-28,","MALE","UK","907) 220-1980257 Fireweed LnKetchikan, Alaska(AK), 99901"),
- (13,"Laurie Smith","1987-07-28,","MALE","UK","95 School LaneLondo"),
- (15,"Dylan Rangel","1987-07-28,","","UK"," New StreetLondon"),
+(7,"Jasmine Fletcher","1957-07-28,","","UK","46 Church Lane LondonN45 9Z"),
+(8,"Dylan Rangel","1937-07-28,","MALE","UK","9001 New StreetLondon"),
+(9,"William Velez","1967-09-18,","MALE","UK","800 Kings RoadLondon"),
+(10,"Steven Murphy","1987-07-9,","MALE","UK",""),
+(11,"Michael Moore","1987-07-28,","FEMALE","UK","(901) 324-31273448 Ile De France St #242Fort Wainwright, Alaska(AK), 99703"),
+(12,"Priscilla Collins PhD","1987-07-28,","MALE","UK","907) 220-1980257 Fireweed LnKetchikan, Alaska(AK), 99901"),
+(13,"Laurie Smith","1987-07-28,","MALE","UK","95 School LaneLondo"),
+(15,"Dylan Rangel","1987-07-28,","","UK"," New StreetLondon"),
 (16,"Robert Chung","1992-05-07","","US","Ridge Top Cir Anchorage, Alaska(AK),"),
- (21,"John Matthews","1987-07-28,","MALE","UK","Anchorage, Alaska(AK),"),
- (17,"Stephanie Schmidt","1987-07-28,","MALE","UK","Seward, Alaska(AK),Seward, Alaska(AK), 99664"),
- (18,"Dr. Victor Martin","1987-07-28,","MALE","UK","1 County Government Education Prog"),
- (19,"Edward Torress","1987-07-28,","MALE","UK","2625 Townsgate Rd Westlake Village, California(CA),"),
- (20,"Casey Thomass","1987-07-28,","MALE","UK","Residential Single Family"),
-  (22,"Casey Thomass","1987-07-28,","FEMALE","UK"," Single Family"),
-   (23,"Casey Thomass","1987-07-28,","FEMALE","UK"," Family")
+(21,"John Matthews","1987-07-28,","MALE","UK","Anchorage, Alaska(AK),"),
+(17,"Stephanie Schmidt","1987-07-28,","MALE","UK","Seward, Alaska(AK),Seward, Alaska(AK), 99664"),
+(18,"Dr. Victor Martin","1987-07-28,","MALE","UK","1 County Government Education Prog"),
+(19,"Edward Torress","1987-07-28,","MALE","UK","2625 Townsgate Rd Westlake Village, California(CA),"),
+(20,"Casey Thomass","1987-07-28,","MALE","UK","Residential Single Family"),
+(22,"Casey Thomass","1987-07-28,","FEMALE","UK"," Single Family"),
+(23,"Casey Thomass","1987-07-28,","FEMALE","UK"," Family");
  
- INSERT INTO PAYMENT_CARD (CardNumber, Holder’sName, Expired_Date, ID) VALUES
+INSERT INTO PAYMENT_CARD (CardNumber, Holder’sName, Expired_Date, ID) VALUES
 ("************9157","Ernest Barnes","2015-07-05,",23);
 INSERT INTO PAYMENT_CARD (CardNumber, Holder’sName, Expired_Date, ID) VALUES
 ("************3734","Andrea Baker","2021-06-09,",2);
@@ -219,7 +192,7 @@ INSERT INTO customer_acc (DisplayName, Password, Email, ID) values
 ("u","******","Richard.Holt@hotmail.com",20),
 ("i","******","Amy.Green56@gmail.com",21),
 ("y","******","Perez.Kimberly84@hotmail.com",22),
-("t","******","CArmstrong@mail.com",23)
+("t","******","CArmstrong@mail.com",23);
 
 
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
@@ -227,15 +200,15 @@ insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
 ("101","b"," 2020-06-06,", "2020-06-09,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("102","c"," 2020-06-07,", "2020-06-09 ,");
+("102","c"," 2020-06-07,", "2020-06-09,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
 ("103","d","2020-06-09,", " 2020-06-19,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("104","e"," 2020-06-09,", "2020-07-09  ,");
+("104","e"," 2020-06-09,", "2020-07-09,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("105","f"," 2021-6-08,", "2021-06-14 ,");
+("105","f"," 2021-6-08,", "2021-06-14,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("106","g"," 2020-06-09,", "2020-06-13  ,");
+("106","g"," 2020-06-09,", "2020-06-13,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
 ("107","h"," 2019-06-09,", " 2020-06-09,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
@@ -243,25 +216,25 @@ insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
 ("109","k","2021-03-07  ,", " 2021-06-09,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("110","l","2020-05-07  ,", "2020-07-04  ,");
+("110","l","2020-05-07  ,", "2020-07-04,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
 ("111","m","2020-03-09  ,", " 2020-04-09,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("112","n"," 2020-06-09,", "2020-08-13 ,");
+("112","n"," 2020-06-09,", "2020-08-13,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("113","o"," 2020-01-02,", "2020-04-30 ,");
+("113","o"," 2020-01-02,", "2020-04-30,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("114","p","2020-12-24 ,", "2021-01-05 ,");
+("114","p","2020-12-24 ,", "2021-01-05,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
 ("115","q"," 2020-12-24,", " 2021-01-07,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("116","r"," 2020-12-25,", "2021-01-05 ,");
+("116","r"," 2020-12-25,", "2021-01-05,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
 ("117","u","2020-12-25 ,", " 2021-06-09,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("118","i"," 2020-12-24,", "2021-06-09 ,");
+("118","i"," 2020-12-24,", "2021-06-09,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
-("119","y"," 2020-12-24,", "2021-06-09 ,");
+("119","y"," 2020-12-24,", "2021-06-09,");
 
 
 
@@ -285,7 +258,7 @@ insert into purpose(BookingID, DisplayName, Work, Others) values
 ("116","r","","x"),
 ("117","u","x",""),
 ("118","i","","x"),
-("119","y","x","")
+("119","y","x","");
 
 
 
@@ -316,103 +289,161 @@ insert into area (PlaceID, BookingID, DisplayName, Description) values
 
 
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Trang Trang Boutique Hotel","Hai Nham Hamlet, Ninh Hai Commune, Ninh Binh, Vietnam ","10","Garden view","8.9*","8000","100","a");
+("Trang Trang Boutique Hotel","Hai Nham Hamlet, Ninh Hai Commune, Ninh Binh, Vietnam ","10","Garden view","8.9*","8000","100","a");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Hanoi Sunshine Hotel","98ham Huy Thong, sai gon ","2","Mountain view","10*","10000","101","b");
+("Hanoi Sunshine Hotel","98 Pham Huy Thong, ha noi","2","Mountain view","10*","10000","101","b");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Muong Thanh Grand Tuyen Quang Hotel","1049Ma May Str, Hoan Kiem District, Hoan Kiem, Hanoi, Vietnam","4","Pool with a view","9.0*","10000","102","a");
+("Muong Thanh Grand Tuyen Quang Hotel","1049 Ma May Str, Hoan Kiem District, Hoan Kiem, Hanoi, Vietnam","4","Pool with a view","9.0*","10000","102","a");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Lavender Hotel","87Hang Hom Street, Hoan Kiem, Hanoi, Vietnam","9","Pool with a view,Barbecue","5.0*","10000","103","b");
+("Lavender Hotel","87 Hang Hom Street, Hoan Kiem, Hanoi, Vietnam","9","Pool with a view,Barbecue","5.0*","10000","103","b");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Royal Palace Hotel","2uong Dong, Phu Quoc","2","Free WiFi","8.9*","90000","104","a");
+("Royal Palace Hotel","2 Duong Dong, Phu Quoc","2","Free WiFi","8.9*","90000","104","a");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Nam Phong Hotel Ham Yen","An Thoi, Phu QuoS","15","Minibar,Safety deposit box","9.6*","90000","105","b");
+("Nam Phong Hotel Ham Yen","An Thoi, Phu Quoc","15","Minibar,Safety deposit box","9.6*","90000","105","b");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Vu Linh Homestay"," Group 30 Hamlet Cua Lap Phu Quoc District, Kien Giang Province, Duong Dong, Phu Quoc, Vietnam","25","Pool with a view,Barbecue,Socket near the bed","7.9*","90000","106","a");
+("Vu Linh Homestay"," Group 30 Hamlet Cua Lap Phu Quoc District, Kien Giang Province, Duong Dong, Phu Quoc, Vietnam","25","Pool with a view,Barbecue,Socket near the bed","7.9*","90000","106","a");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Pài Bjooc homestay","9Chùa Ông, Cửa Lấp xã Dương Tơ, Duong Dong, Phu Quoc, Vietnam","30","Electric kettle","5*","90000","107","c");
+("Pài Bjooc homestay","9 Chùa Ông, Cửa Lấp xã Dương Tơ, Duong Dong, Phu Quoc, Vietnam","30","Electric kettle","5*","90000","107","c");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Le Forest Resort","9khubaotồn Vân Long, Xã Gia Vân, Huyện Gia Viễn, Ninh Bình 430000, Việt Nam","11","Outdoor dining area","5.9*","8000","108","d");
+("Le Forest Resort","Khu Bảo tồn Vân Long, Xã Gia Vân, Huyện Gia Viễn, Ninh Bình 430000, Việt Nam","11","Outdoor dining area","5.9*","8000","108","d");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Hong Hao Hostel and Motorbikes","3Xóm Hòa Bình, Ninh Hai, Việt Nam","1","Outdoor dining area","9.9*","8000","109","d");
+("Hong Hao Hostel and Motorbikes","3, Xóm Hòa Bình, Ninh Hai, Việt Nam","1","Outdoor dining area","9.9*","8000","109","d");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Lalita Boutique Hotel & Spa Ninh Binh","3000n Văn Lâm, Ninh Hai","10","Outdoor dining area","10*","8000","111","b");
+("Lalita Boutique Hotel & Spa Ninh Binh","Thôn Văn Lâm, Ninh Hai 430000, Việt Nam","10","Outdoor dining area","10*","8000","111","b");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Chez Beo Homestay"," 1, Thôn Văn Lâm, Ninh Hai 430000, Việt Nam","6","Outdoor dining area","8.6*","8000","112","c");
+("Chez Beo Homestay","Xóm Đại Đồng, Đội 1, Thôn Văn Lâm, Ninh Hai 430000, Việt Nam","6","Outdoor dining area","8.6*","8000","112","c");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Mountain Side Homestay & Cafe","10 Ma May Str, Hoan Kiem District, Hoan Kiem, Hanoi, Vietnam","3","Outdoor dining area","7.9*","10000","113","d");
+("Mountain Side Homestay & Cafe","104 Ma May Str, Hoan Kiem District, Hoan Kiem, Hanoi, Vietnam","3","Outdoor dining area","7.9*","10000","113","d");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("SECRET GARDEN","3, Van Lam, Ninh Hai, Hoa Lu, Ninh Binh, Vietnam ","2","Outdoor dining area","6.9*","8000","114","m");
+("SECRET GARDEN","No 3, Van Lam, Ninh Hai, Hoa Lu, Ninh Binh, Vietnam","2","Outdoor dining area","6.9*","8000","114","m");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Mai Chau Xanh Bungalow","66Bản Lác, Mai Châu, Việt Nam","3","Safety deposit box","6.9*","36000","115","n");
+("Mai Chau Xanh Bungalow","2 Bản Lác, Mai Châu, Việt Nam","3","Safety deposit box","6.9*","36000","115","n");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Mai Chau Green Rice Field Hotel"," 1A, Mai Châu, Việt Nam","4","Socket near the bed","6.9*","36000","116","b");
+("Mai Chau Green Rice Field Hotel","1 Bản Lác số 1A, Mai Châu, Việt Nam","4","Socket near the bed","6.9*","36000","116","b");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("mai Chau Dreams Homestay"," Pom Coong, Mai Châu, Việt Nam ","5","Seating Area","8.1*","36000","117","e");
+("mai Chau Dreams Homestay","Bản Lác - Pom Coong, Mai Châu, Việt Nam ","5","Seating Area","8.1*","36000","117","e");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("Mai Chau Ecolodge","9Thia Village, Na Phon Commune, Mai Châu, Việt Nam ","1","TV","8.9*","36000","118","c");
+("Mai Chau Ecolodge","Na Thia Village, Na Phon Commune, Mai Châu, Việt Nam ","1","TV","8.9*","36000","118","c");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-(" Hoa Dao Hotel","88 Thinh Ward - Comercial Area, Hòa Bình, Việt Nam ","7","Entire unit wheelchair accessible","9.9*","36000","119","i");
+("Hoa Dao Hotel","88 Thinh Ward - Comercial Area, Hòa Bình, Việt Nam ","7","Entire unit wheelchair accessible","9.9*","36000","119","i");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
-("HANZ Regal Hotel Hanoi","72, Ninh Hai 430000, Việt Nam","0","Outdoor dining area","8.9*","8000","110","a");
+("HANZ Regal Hotel Hanoi","72, Ninh Hai 430000, Việt Nam","0","Outdoor dining area","8.9*","8000","110","a");
 
 
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Trang Trang Boutique Hotel","Hai Nham Hamlet, Ninh Hai Commune, Ninh Binh, Vietnam ","29","16","0","144.895");
+("Trang Trang Boutique Hotel","Hai Nham Hamlet, Ninh Hai Commune, Ninh Binh, Vietnam ","29","16","0","144.895");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Hanoi Sunshine Hotel","90 Pham Huy Thong, Ba Dinh, Hanoi, Vietnam","30","20","0","143.88");
+("Hanoi Sunshine Hotel","98 Pham Huy Thong, ha noi","30","20","0","143.88");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Muong Thanh Grand Tuyen Quang HotelOpens in new window","104 Ma May Str, Hoan Kiem District, Hoan Kiem, Hanoi, Vietnam","30","20","5","141.4");
+("Muong Thanh Grand Tuyen Quang Hotel","1049 Ma May Str, Hoan Kiem District, Hoan Kiem, Hanoi, Vietnam","30","20","5","141.4");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Lavender Hotel","18 Hang Hom Street, Hoan Kiem, Hanoi, Vietnam","19","11","7","143.25");
+("Lavender Hotel","87 Hang Hom Street, Hoan Kiem, Hanoi, Vietnam","19","11","7","143.25");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Royal Palace Hotel","Duong Dong, Phu Quoc","20","14","9","144.81");
+("Royal Palace Hotel","2 Duong Dong, Phu Quoc","20","14","9","144.81");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Nam Phong Hotel Ham Yen","An Thoi, Phu QuocS","7","14","3","144.1781");
+("Nam Phong Hotel Ham Yen","An Thoi, Phu Quoc","7","14","3","144.1781");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Vu Linh Homestay"," Group 3, Hamlet Cua Lap Phu Quoc District, Kien Giang Province, Duong Dong, Phu Quoc, Vietnam","27","7","1","144.215");
+("Vu Linh Homestay"," Group 30 Hamlet Cua Lap Phu Quoc District, Kien Giang Province, Duong Dong, Phu Quoc, Vietnam","27","7","1","144.215");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Pài Bjooc homestay"," Chùa Ông, Cửa Lấp xã Dương Tơ, Duong Dong, Phu Quoc, Vietnam","30","5","0","142.15");
+("Pài Bjooc homestay","9 Chùa Ông, Cửa Lấp xã Dương Tơ, Duong Dong, Phu Quoc, Vietnam","30","5","0","142.15");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Le Forest Resort","Khu Bảo tồn Vân Long, Xã Gia Vân, Huyện Gia Viễn, Ninh Bình 430000, Việt Nam","22","7","2","142.24");
+("Le Forest Resort","Khu Bảo tồn Vân Long, Xã Gia Vân, Huyện Gia Viễn, Ninh Bình 430000, Việt Nam","22","7","2","142.24");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Hong Hao Hostel and Motorbikes","3, Xóm Hòa Bình, Ninh Hai, Việt Nam","11","9","3","142.21");
+("Hong Hao Hostel and Motorbikes","3, Xóm Hòa Bình, Ninh Hai, Việt Nam","11","9","3","142.21");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Lion Kings Hotel & Resort","Doi 2, Ninh Hai 430000, Việt Nam","6","11","0","143.51");
+("Lalita Boutique Hotel & Spa Ninh Binh","Thôn Văn Lâm, Ninh Hai 430000, Việt Nam","7","5","0","141.51");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Lalita Boutique Hotel & Spa Ninh Binh","Thôn Văn Lâm, Ninh Hai 430000, Việt Nam","7","5","0","141.51");
-insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Chez Beo Homestay","Xóm Đại Đồng, Đội 1, Thôn Văn Lâm, Ninh Hai 430000, Việt Nam","8","5","0","139.2");
+("Chez Beo Homestay","Xóm Đại Đồng, Đội 1, Thôn Văn Lâm, Ninh Hai 430000, Việt Nam","8","5","0","139.2");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
 ("Mountain Side Homestay & Cafe","104 Ma May Str, Hoan Kiem District, Hoan Kiem, Hanoi, Vietnam","9","6","0","141.0401");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("SECRET GARDEN","No 3, Van Lam, Ninh Hai, Hoa Lu, Ninh Binh, Vietnam ","12","3","0","141.81");
+("SECRET GARDEN","No 3, Van Lam, Ninh Hai, Hoa Lu, Ninh Binh, Vietnam","12","3","0","141.81");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
 ("Mai Chau Xanh Bungalow","2 Bản Lác, Mai Châu, Việt Nam","15","2","0","142.56");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
 ("Mai Chau Green Rice Field Hotel","1 Bản Lác số 1A, Mai Châu, Việt Nam","15","1","0","142.72");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("mai Chau Dreams Homestay","Bản Lác - Pom Coong, Mai Châu, Việt Nam ","13","5","0","138.37");
+("mai Chau Dreams Homestay","Bản Lác - Pom Coong, Mai Châu, Việt Nam ","13","5","0","138.37");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("Mai Chau Ecolodge","Na Thia Village, Na Phon Commune, Mai Châu, Việt Nam ","22","6","0","139.36");
+("Mai Chau Ecolodge","Na Thia Village, Na Phon Commune, Mai Châu, Việt Nam ","22","6","0","139.36");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-(" Hoa Dao Hotel","an Thinh Ward - Comercial Area, Hòa Bình, Việt Nam ","11","7","0","138.27");
+("Hoa Dao Hotel","88 Thinh Ward - Comercial Area, Hòa Bình, Việt Nam ","11","7","0","138.27");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
-("HANZ Regal Hotel Hanoi","Doi 2, Ninh Hai 430000, Việt Nam","10","8","0","500");
+("HANZ Regal Hotel Hanoi","72, Ninh Hai 430000, Việt Nam","10","8","0","500");
+
+  
+select *from room;
+select *from booking;
+select *from area;
+select *from customer1;
+select *From customer_acc;
+select *from hotel;
+select *from purpose;
+select *from extra_payment;
+select *from payment_Card;
+select *from services;
 
 
+insert into services (ServiceName, Price, Decription) values 
+("SILVER SERVICE STYLE","700"," server moves counter-clockwise while serving food"),
+(" AMERICAN SERVICE STYLE","4500","dishes are neatly plated in the kitchen by the kitchen staff and placed at the guest’s cover from the right-hand side"),
+("Robotic Service ","700000","Casino's and Luxury Cruise Liners"),
+("BUFFET SERVICE STYLE","45000","self-service"),
+("FRENCH SERVICE STYLE","90000","Family service"),
+("Snak Bar Service","12357"," Tall stool is placed on a counter "),
+("RUSSIAN SERVICE STYLE","3456","elaborate service "),
+("GUERIDON SERVICE STYLE","7890","Trolley service"),
+("plate service","100","used in Canteens, Industries, Staff Cafeterias"),
+("Sngle Point Service","6700","guest pays for the food and beverage over the counter."),
+("TRAY SERVICE STYLE","200","rooms/beds/seats by waiters."),
+("SELF SERVICE","135","simplest form of service method where"),
+("CAFETERIA SERVICE","20","raditional Cafeteria Service"),
+("Breakfast","50","open-buffet breakfast and is directly accessible from guestroom corridors."),
+("Parking","500"," car park and guests can easily reach the shopping mall by using the elevators"),
+("Immediate Vicinity","1","Banks and ATM Machines"),
+("Room Service","50"," provides 24-hour room service."),
+("Nature and Types of Services","340","provided in the guest room"),
+("Mobile Pantries ","200"," food preparation pantries installed in service elevators."),
+("Blue Plate Service ","130","Normally the table and dining area is small in service.");
+
+select *from extra_payment;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Trang Trang Boutique Hotel","Hai Nham Hamlet, Ninh Hai Commune, Ninh Binh, Vietnam ","29","SILVER SERVICE STYLE","30"); 
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Hanoi Sunshine Hotel","98 Pham Huy Thong, ha noi","30"," AMERICAN SERVICE STYLE","40");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Lavender Hotel","87 Hang Hom Street, Hoan Kiem, Hanoi, Vietnam","19","BUFFET SERVICE STYLE","1000");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Royal Palace Hotel","2 Duong Dong, Phu Quoc","20","FRENCH SERVICE STYLE","400");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Nam Phong Hotel Ham Yen","An Thoi, Phu Quoc","7","Snak Bar Service","300");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Vu Linh Homestay"," Group 30 Hamlet Cua Lap Phu Quoc District, Kien Giang Province, Duong Dong, Phu Quoc, Vietnam","27","RUSSIAN SERVICE STYLE","250");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Pài Bjooc homestay","9 Chùa Ông, Cửa Lấp xã Dương Tơ, Duong Dong, Phu Quoc, Vietnam","30","GUERIDON SERVICE STYLE","400");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Le Forest Resort","Khu Bảo tồn Vân Long, Xã Gia Vân, Huyện Gia Viễn, Ninh Bình 430000, Việt Nam","22","Breakfast","50");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Hong Hao Hostel and Motorbikes","3, Xóm Hòa Bình, Ninh Hai, Việt Nam","11","Parking","7");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Lalita Boutique Hotel & Spa Ninh Binh","Thôn Văn Lâm, Ninh Hai 430000, Việt Nam","7","Immediate Vicinity","25");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Chez Beo Homestay","Xóm Đại Đồng, Đội 1, Thôn Văn Lâm, Ninh Hai 430000, Việt Nam","8","Room Service","70");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Mountain Side Homestay & Cafe","104 Ma May Str, Hoan Kiem District, Hoan Kiem, Hanoi, Vietnam","9","Nature and Types of Services","45");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("SECRET GARDEN","No 3, Van Lam, Ninh Hai, Hoa Lu, Ninh Binh, Vietnam","12","Mobile Pantries ","200");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Mai Chau Xanh Bungalow","2 Bản Lác, Mai Châu, Việt Nam","15","Blue Plate Service ","900");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Mai Chau Green Rice Field Hotel","1 Bản Lác số 1A, Mai Châu, Việt Nam","15","Breakfast","500");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("mai Chau Dreams Homestay","Bản Lác - Pom Coong, Mai Châu, Việt Nam ","13","Parking","50");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Mai Chau Ecolodge","Na Thia Village, Na Phon Commune, Mai Châu, Việt Nam ","22","Immediate Vicinity","37");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("Hoa Dao Hotel","88 Thinh Ward - Comercial Area, Hòa Bình, Việt Nam ","11","Room Service","70");
+insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
+("HANZ Regal Hotel Hanoi","72, Ninh Hai 430000, Việt Nam","10","Nature and Types of Services","40");
