@@ -1,7 +1,8 @@
 create database bookingg;
 use bookingg;
 drop database bookingg;
-CREATE TABLE CUSTOMER1(
+ PROMPT **** CREATE TABLE CUSTOMER **** */
+CREATE TABLE CUSTOMER(
 		ID numeric,
 		NAME varchar(500),
 		DOB date,
@@ -10,25 +11,32 @@ CREATE TABLE CUSTOMER1(
 		ADDRESS varchar(500),
 		PRIMARY KEY (ID)
 		);
-
+        
+        
+ PROMPT **** CREATE TABLE PAYMENT_CARD**** */
 CREATE TABLE PAYMENT_CARD (
     CardNumber varchar (500),  
     Holder’sName varchar (500),
     Expired_Date date, 
 	ID numeric,
     PRIMARY KEY (CardNumber),
-	FOREIGN KEY (ID) REFERENCES CUSTOMER1(ID)  
+	FOREIGN KEY (ID) REFERENCES CUSTOMER(ID)  
     );
-
+    
+    
+    
+ PROMPT **** CREATE TABLE CUSTOMER_ACC**** */
 CREATE TABLE CUSTOMER_ACC(
 		DisplayName varchar(500),
         Password varchar(20),
         Email varchar(500),
         ID numeric,
         PRIMARY KEY (DisplayName),
-        FOREIGN KEY (ID) REFERENCES CUSTOMER1(ID)  
+        FOREIGN KEY (ID) REFERENCES CUSTOMER(ID)  
        );
-
+       
+       
+PROMPT **** CREATE TABLE booking***** */
 CREATE TABLE BOOKING(
     BookingId numeric,
     DisplayName varchar(500),
@@ -37,7 +45,9 @@ CREATE TABLE BOOKING(
     Primary Key (BookingID, DisplayName),
 	Foreign Key (DisplayName) references CUSTOMER_ACC (DisplayName)
     );
-
+    
+    
+PROMPT **** CREATE TABLE PURPOSE*** */
 CREATE TABLE PURPOSE (
 	BookingID numeric,
 	DisplayName varchar(500),
@@ -48,6 +58,8 @@ CREATE TABLE PURPOSE (
     Foreign Key (DisplayName) references CUSTOMER_ACC (DisplayName)
 );
 
+PROMPT **** CREATE TABLE AREA*** */
+
 CREATE TABLE AREA (
 	PlaceID numeric,
     BookingID numeric,
@@ -57,6 +69,9 @@ CREATE TABLE AREA (
     Foreign Key (BookingID) references BOOKING (BookingID),
 	Foreign Key (DisplayName) references CUSTOMER_ACC (DisplayName)
 );
+
+
+PROMPT **** CREATE TABLE HOTEL*** */
 
 CREATE TABLE HOTEL (
 	HotelName varchar (200),
@@ -73,6 +88,8 @@ CREATE TABLE HOTEL (
 	Foreign Key (PlaceID) references AREA (PlaceID)
 );
 
+
+PROMPT **** CREATE TABLE *** */
 CREATE TABLE ROOM (
 	HotelName varchar (200),
 	location varchar(500), 
@@ -85,7 +102,7 @@ CREATE TABLE ROOM (
 );
   
  
-
+PROMPT **** CREATE TABLE *** */
 CREATE TABLE SERVICES (
 	ServiceName varchar (50),
     Price float,
@@ -93,6 +110,7 @@ CREATE TABLE SERVICES (
     Primary Key (ServiceName)
    );
 
+PROMPT **** CREATE TABLE *** */
 CREATE TABLE EXTRA_PAYMENT (
 	HotelName varchar (200),
 	location varchar(500), 
@@ -104,7 +122,9 @@ CREATE TABLE EXTRA_PAYMENT (
 	Foreign Key (ServiceName) references SERVICES (ServiceName)
 );
 
-INSERT INTO CUSTOMER1 (ID, NAME, DOB, GENDER, NATIONALITY, ADDRESS) values 
+
+// INSERT INTO TABLE ***
+INSERT INTO CUSTOMER (ID, NAME, DOB, GENDER, NATIONALITY, ADDRESS) values 
 (2,"Ernest Barnes","1987-07-28,","MALE","UK","Residential Single Family"),
 (3,"Andrea Baker","1987-07-28,","FEMALE","US","99A Single Family"), 
 (4,"Rebecca Parker","1977-07-28,","","UK","195Street Family"),
@@ -127,6 +147,8 @@ INSERT INTO CUSTOMER1 (ID, NAME, DOB, GENDER, NATIONALITY, ADDRESS) values
 (22,"Casey Thomass","1987-07-28,","FEMALE","UK"," Single Family"),
 (23,"Casey Thomass","1987-07-28,","FEMALE","UK"," Family");
  
+ 
+ // INSERT INTO TABLE ***
 INSERT INTO PAYMENT_CARD (CardNumber, Holder’sName, Expired_Date, ID) VALUES
 ("************9157","Ernest Barnes","2015-07-05,",23);
 INSERT INTO PAYMENT_CARD (CardNumber, Holder’sName, Expired_Date, ID) VALUES
@@ -170,7 +192,7 @@ INSERT INTO PAYMENT_CARD (CardNumber, Holder’sName, Expired_Date, ID) VALUES
 INSERT INTO PAYMENT_CARD (CardNumber, Holder’sName, Expired_Date, ID) VALUES
 ("************9111","Rodriguez","2021-01-05,",20);
 
-
+// INSERT INTO TABLE ***
 INSERT INTO customer_acc (DisplayName, Password, Email, ID) values 
 ("a","******","Robert.Chung47@yandex.com",2),
 ("b","******","MGarcia16@comcast.net",3),
@@ -194,7 +216,7 @@ INSERT INTO customer_acc (DisplayName, Password, Email, ID) values
 ("y","******","Perez.Kimberly84@hotmail.com",22),
 ("t","******","CArmstrong@mail.com",23);
 
-
+// INSERT INTO TABLE ***
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
 ("100","a", "2020-06-05,", " 2020-06-07,");
 insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values 
@@ -237,7 +259,7 @@ insert into booking (BookingId, DisplayName, CheckInDate, CheckOutDate) values
 ("119","y"," 2020-12-24,", "2021-06-09,");
 
 
-
+// INSERT INTO TABLE ***
 insert into purpose(BookingID, DisplayName, Work, Others) values 
 ("100","a","x",""),
 ("101","b","x","x"),
@@ -261,7 +283,7 @@ insert into purpose(BookingID, DisplayName, Work, Others) values
 ("119","y","x","");
 
 
-
+// INSERT INTO TABLE ***
 
 insert into area (PlaceID, BookingID, DisplayName, Description) values
 (22000,119,"a","Tuyên Quang");
@@ -287,7 +309,7 @@ insert into area (PlaceID, BookingID, DisplayName, Description) values
 (26000,101,"i","Bắc Giang"),
 (16000,100,"y","Bắc Ninh");
 
-
+// INSERT INTO TABLE ***
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
 ("Trang Trang Boutique Hotel","Hai Nham Hamlet, Ninh Hai Commune, Ninh Binh, Vietnam ","10","Garden view","8.9*","8000","100","a");
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
@@ -329,7 +351,7 @@ insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, Plac
 insert into hotel (HotelName, Location, No_empty_Room, Convenience, Rating, PlaceID, BookingID, DisplayName) values
 ("HANZ Regal Hotel Hanoi","72, Ninh Hai 430000, Việt Nam","0","Outdoor dining area","8.9*","8000","110","a");
 
-
+// INSERT INTO TABLE ***
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
 ("Trang Trang Boutique Hotel","Hai Nham Hamlet, Ninh Hai Commune, Ninh Binh, Vietnam ","29","16","0","144.895");
 insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) values
@@ -372,17 +394,8 @@ insert into room (HotelName, location, RoomNumber, NoAdult, NoChhildren, Price) 
 ("HANZ Regal Hotel Hanoi","72, Ninh Hai 430000, Việt Nam","10","8","0","500");
 
   
-select *from room;
-select *from booking;
-select *from area;
-select *from customer1;
-select *From customer_acc;
-select *from hotel;
-select *from purpose;
-select *from extra_payment;
-select *from payment_Card;
-select *from services;
 
+// INSERT INTO TABLE 
 
 insert into services (ServiceName, Price, Decription) values 
 ("SILVER SERVICE STYLE","700"," server moves counter-clockwise while serving food"),
@@ -406,9 +419,9 @@ insert into services (ServiceName, Price, Decription) values
 ("Mobile Pantries ","200"," food preparation pantries installed in service elevators."),
 ("Blue Plate Service ","130","Normally the table and dining area is small in service.");
 
-select *from extra_payment;
 
 
+// INSERT INTO TABLE 
 insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
 ("Trang Trang Boutique Hotel","Hai Nham Hamlet, Ninh Hai Commune, Ninh Binh, Vietnam ","29","SILVER SERVICE STYLE","30"); 
 insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
@@ -448,44 +461,77 @@ insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantit
 insert into EXTRA_PAYMENT( HotelName, location, RoomNumber, ServiceName, Quantity) values
 ("HANZ Regal Hotel Hanoi","72, Ninh Hai 430000, Việt Nam","10","Nature and Types of Services","40");
 
-a. SELECT * FROM bookingg.extra_payment
+
+select *from room;
+select *from booking;
+select *from area;
+select *from CUSTOMER;
+select *From customer_acc;
+select *from hotel;
+select *from purpose;
+select *from extra_payment;
+select *from payment_Card;
+select *from services;
+
+a.Find hotels that have “Ninh” in their location.
+ SELECT * FROM bookingg.extra_payment
 where LOCATION LIKE '%Ninh%';
-b.SELECT * FROM bookingg.hotel 
+
+b.b. Display hotels that have “Phu Quoc” in their location in a descending order of rating.
+SELECT * FROM bookingg.hotel 
 where LOCATION LIKE '%Phu Quoc%'
 ORDER BY rating DESC;
-c. SELECT customer_acc.DisplayName,email,CheckInDate,CheckOutDate
+c. Show a table that has the customer display name, email, their the check in and check out date in an ascending order of display name.
+ SELECT customer_acc.DisplayName,email,CheckInDate,CheckOutDate
 FROM customer_acc
 INNER JOIN booking on Customer_acc.DisplayName = Booking.DisplayName
 order by DisplayName asc;
-d. select * FROM bookingg.hotel 
+
+d. Find hotels that have “ha” in their location, show the hotels’ name and number of empty rooms. 
+The customer wants to organize an event for his company so the number of empty rooms need to be higher
+ than 20. The hotel that have more empty rooms should be listed first.
+
+
+select * FROM bookingg.hotel 
 where LOCATION LIKE '%ha%';
 SELECT HotelName, No_empty_Room 
 FROM hotel
 GROUP BY No_empty_Room
 HAVING  No_empty_Room >20
 ORDER BY No_empty_Room DESC;
-e. CREATE VIEW service_hotel as
+
+e. Create a view for customer to find the service that cost less than 100$
+CREATE VIEW service_hotel as
 SELECT ServiceName, price
 FROM services
 where Price <100
-f.  update CUSTOMER
+f.  Update the customer
+update CUSTOMER
 set DOB ="2001-03-04"
 WHERE DOB ="1987-07-28";
 commit;
-g. select DisplayName from booking
+g. checked in between 08 June 2021 and 14 June 2021.
+select DisplayName from booking
 where CheckInDate between "2021-6-08"
 and "2021-06-14";
-h. SELECT WORK, COUNT(WORK) AS "NUMBER"
+
+h.  Count the number of customers booking hotel rooms for working purposes.
+
+SELECT WORK, COUNT(WORK) AS "NUMBER"
 from purpose
 GROUP BY WORK;
-i.SELECT NAME, GENDER, COUNT(3)
+
+i.Count the number of female customer named Casey Thomass and show the result of the female only.
+
+SELECT NAME, GENDER, COUNT(3)
 FROM CUSTOMER
 WHERE NAME="Casey Thomass"
 GROUP BY GENDER
 HAVING GENDER="FEMALE";
-j. UPDATE area 
+j.Change the area description of the booking that has an id of 113 into “Tuyênn Quang”.
+
+ UPDATE area 
 SET 
     Description = 'Tuyênn Quang'
 WHERE
    BookingID =113;
-
